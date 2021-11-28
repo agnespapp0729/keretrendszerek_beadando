@@ -4,6 +4,7 @@ import hu.uni.eku.tzs.controller.dto.ActorDto;
 import hu.uni.eku.tzs.controller.dto.ActorMapper;
 import hu.uni.eku.tzs.model.Actor;
 import hu.uni.eku.tzs.service.ActorManager;
+import hu.uni.eku.tzs.service.exceptions.ActorAlreadyExitsException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class ActorController {
     @ApiOperation("Read All")
     @GetMapping(value = {""})
     public Collection<ActorDto> readAllActors(){
-        return ActorManager.readAll()
+        return actorManager.readAll()
                 .stream()
                 .map(actorMapper::actorToactorDto)
                 .collect(Collectors.toList());
@@ -41,11 +42,11 @@ public class ActorController {
     public ActorDto create (@Valid @RequestBody ActorDto recordRequestDto){
         Actor actor = actorMapper.actorDtoToActor(recordRequestDto);
         try{
-            Actor recorded = actorManager.record();
-            return actorMapper.actorToactorDto(recorded)
+            Actor recorded = actorManager.record(actor);
+            return actorMapper.actorToactorDto(recorded);
         }
-        catch (ActorAlreadyExistException e){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage);
+        catch (ActorAlreadyExitsException e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
