@@ -1,6 +1,6 @@
 package hu.uni.eku.tzs.model;
 
-import hu.uni.eku.tzs.IsEnglish;
+import hu.uni.eku.tzs.enums.IsEnglish;
 import lombok.*;
 
 @Getter

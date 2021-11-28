@@ -1,6 +1,6 @@
 package hu.uni.eku.tzs.controller.dto;
 
-import hu.uni.eku.tzs.IsEnglish;
+import hu.uni.eku.tzs.enums.IsEnglish;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

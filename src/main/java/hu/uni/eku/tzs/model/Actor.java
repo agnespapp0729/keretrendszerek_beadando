@@ -1,6 +1,5 @@
 package hu.uni.eku.tzs.model;
 
-import hu.uni.eku.tzs.Gender;
 import lombok.*;
 
 @Getter
