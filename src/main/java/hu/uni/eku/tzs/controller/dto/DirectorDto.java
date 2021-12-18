@@ -15,10 +15,9 @@ public class DirectorDto {
 
     private int directorId;
 
-    @NotBlank(message="The quality mustn't be empty")
+    @NotBlank(message = "The quality mustn't be empty")
     private int directorQuality;
 
-    @NotBlank(message="The revenue mustn't be empty")
+    @NotBlank(message = "The revenue mustn't be empty")
     private int revenue;
-
 }

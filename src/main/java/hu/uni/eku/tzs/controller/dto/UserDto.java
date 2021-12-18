@@ -15,14 +15,12 @@ public class UserDto {
 
     private int userId;
 
-    @NotBlank(message="The age of the user mustn't be empty")
-    private int userAge;
+    @NotBlank(message = "The age of the user mustn't be empty")
+    private String userAge;
 
-    @NotBlank(message="The gender of the user mustn't be empty")
-    private int userGender;
+    @NotBlank(message = "The gender of the user mustn't be empty")
+    private String userGender;
 
-    @NotBlank(message="The occupation mustn't be empty")
-    private int occupation;
-
-
+    @NotBlank(message = "The occupation mustn't be empty")
+    private String occupation;
 }

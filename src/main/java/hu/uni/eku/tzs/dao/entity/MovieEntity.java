@@ -1,36 +1,39 @@
 package hu.uni.eku.tzs.dao.entity;
 
-import hu.uni.eku.tzs.enums.Gender;
 import hu.uni.eku.tzs.enums.IsEnglish;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="movies")
+@Entity(name = "movies")
 public class MovieEntity {
 
     @Id
-    @Column(name="movieId")
+    @Column(name = "movieId")
     private int movieId;
 
-    @Column(name="year")
+    @Column(name = "year")
     private int year;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="isEnglish")
+    @Column(name = "isEnglish")
     private IsEnglish isEnglish;
 
-    @Column(name="country")
+    @Column(name = "country")
     private String country;
 
-    @Column(name="runningtime")
+    @Column(name = "runningtime")
     private int runningTime;
 
 

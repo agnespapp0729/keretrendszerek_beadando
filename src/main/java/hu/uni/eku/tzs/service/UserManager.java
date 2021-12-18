@@ -14,5 +14,6 @@ public interface UserManager {
     Collection<User> readAll();
 
     User modify(User user) throws UserNotFoundException;
+
     void delete(User user) throws UserNotFoundException;
 }

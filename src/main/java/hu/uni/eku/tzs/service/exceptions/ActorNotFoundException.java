@@ -1,19 +1,19 @@
 package hu.uni.eku.tzs.service.exceptions;
 
-public class ActorNotFoundException extends Exception{
+public class ActorNotFoundException extends Exception {
     public ActorNotFoundException(){
 
     }
 
-    public ActorNotFoundException(String message){
+    public ActorNotFoundException(String message) {
         super(message);
     }
 
-    public ActorNotFoundException(String message, Throwable cause){
+    public ActorNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public ActorNotFoundException(Throwable cause){
+    public ActorNotFoundException(Throwable cause) {
         super(cause);
     }
 
@@ -21,7 +21,7 @@ public class ActorNotFoundException extends Exception{
             String message,
             Throwable cause,
             boolean enableSuppression,
-            boolean writableStackTrace){
+            boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

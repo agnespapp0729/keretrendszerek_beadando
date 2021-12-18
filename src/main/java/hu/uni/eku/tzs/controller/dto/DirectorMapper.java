@@ -9,5 +9,4 @@ public interface DirectorMapper {
     DirectorDto directorTodirectorDto(Director director);
 
     Director directorDtoToDirector(DirectorDto directorDto);
-
 }

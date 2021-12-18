@@ -7,12 +7,13 @@ import hu.uni.eku.tzs.service.exceptions.DirectorNotFoundException;
 import java.util.Collection;
 
 public interface DirectorManager {
-    Director record(Director director) throws DirectorAlreadyExistsException, DirectorNotFoundException;
+    Director record(Director director) throws DirectorAlreadyExistsException;
 
     Director readById(int id) throws DirectorNotFoundException;
 
     Collection<Director> readAll();
 
     Director modify(Director director) throws DirectorNotFoundException;
+
     void delete(Director director) throws DirectorNotFoundException;
 }

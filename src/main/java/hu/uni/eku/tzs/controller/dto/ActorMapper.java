@@ -9,6 +9,4 @@ public interface ActorMapper {
     ActorDto actorToactorDto(Actor actor);
 
     Actor actorDtoToActor(ActorDto actorDto);
-
-
 }

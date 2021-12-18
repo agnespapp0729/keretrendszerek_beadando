@@ -10,14 +10,19 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-@Api(tags="Users")
+@Api(tags = "Users")
 @RequestMapping("/users")
 @RestController
 @RequiredArgsConstructor
@@ -29,60 +34,54 @@ public class UserController {
 
     @ApiOperation("Read All")
     @GetMapping(value = {""})
-    public Collection<UserDto> readAllUsers(){
+    public Collection<UserDto> readAllUsers() {
         return userManager.readAll()
-                .stream()
-                .map(userMapper::userTouserDto)
-                .collect(Collectors.toList());
+            .stream()
+            .map(userMapper::userTouserDto)
+            .collect(Collectors.toList());
     }
 
     @ApiOperation("ReadByID")
-    @GetMapping(value="/{id}")
+    @GetMapping(value = "/{id}")
     public UserDto readById(@PathVariable int id) throws UserNotFoundException {
-        try{
+        try {
             return userMapper.userTouserDto(userManager.readById(id));
-        }
-        catch(UserNotFoundException e){
+        } catch (UserNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
     @ApiOperation("Record")
     @GetMapping(value = {""})
-    public UserDto create (@Valid @RequestBody UserDto recordRequestDto) throws UserNotFoundException {
+    public UserDto create(@Valid @RequestBody UserDto recordRequestDto) throws UserAlreadyExistsException {
         User user = userMapper.userDtoTouser(recordRequestDto);
-        try{
+        try {
             User recorded = userManager.record(user);
             return userMapper.userTouserDto(recorded);
-        }
-        catch (UserAlreadyExistsException e){
+        } catch (UserAlreadyExistsException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
     @ApiOperation("Update")
     @GetMapping(value = {""})
-    public UserDto update(@Valid @RequestBody UserDto updateRequestDto){
+    public UserDto update(@Valid @RequestBody UserDto updateRequestDto) {
         User user = userMapper.userDtoTouser(updateRequestDto);
-        try{
+        try {
             User updateUser = userManager.modify(user);
             return userMapper.userTouserDto(updateUser);
-        }
-        catch(UserNotFoundException e){
+        } catch (UserNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
     @ApiOperation("Delete")
     @GetMapping(value = {""})
-    public void delete(@RequestParam int id){
-        try{
+    public void delete(@RequestParam int id) {
+        try {
             userManager.delete(userManager.readById(id));
-        }
-        catch (UserNotFoundException e){
+        } catch (UserNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
-    
-    
 }

@@ -15,6 +15,7 @@ public interface ActorManager {
     Collection<Actor> readAll();
 
     Actor modify(Actor actor) throws ActorNotFoundException;
+
     void delete(Actor actor) throws ActorNotFoundException;
 
 }

@@ -13,6 +13,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MovieDto {
+
     private int movieId;
 
     @NotBlank(message = "The year cannot be empty")
@@ -26,5 +27,4 @@ public class MovieDto {
 
     @NotBlank(message = "The running time cannot be empty")
     private int runningTime;
-
 }

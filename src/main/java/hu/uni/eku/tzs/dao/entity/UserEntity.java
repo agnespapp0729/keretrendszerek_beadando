@@ -13,20 +13,20 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="users")
+@Entity(name = "users")
 public class UserEntity {
 
     @Id
-    @Column(name="userId")
+    @Column(name = "userId")
     private int userId;
 
-    @Column(name="age")
+    @Column(name = "age")
     private String age;
 
-    @Column(name="u_gender")
+    @Column(name = "u_gender")
     private String userGender;
 
-    @Column(name="occupation")
+    @Column(name = "occupation")
     private String occupation;
 
 }

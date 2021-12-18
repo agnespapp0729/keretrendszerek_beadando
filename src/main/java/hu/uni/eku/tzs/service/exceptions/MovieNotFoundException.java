@@ -1,19 +1,19 @@
 package hu.uni.eku.tzs.service.exceptions;
 
-public class MovieNotFoundException extends Exception{
-    public MovieNotFoundException(){
+public class MovieNotFoundException extends Exception {
+    public MovieNotFoundException() {
 
     }
 
-    public MovieNotFoundException(String message){
+    public MovieNotFoundException(String message) {
         super(message);
     }
 
-    public MovieNotFoundException(String message, Throwable cause){
+    public MovieNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public MovieNotFoundException(Throwable cause){
+    public MovieNotFoundException(Throwable cause) {
         super(cause);
     }
 
@@ -21,7 +21,7 @@ public class MovieNotFoundException extends Exception{
             String message,
             Throwable cause,
             boolean enableSuppression,
-            boolean writableStackTrace){
+            boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

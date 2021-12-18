@@ -1,6 +1,5 @@
 package hu.uni.eku.tzs.dao;
 
-import hu.uni.eku.tzs.dao.entity.DirectorEntity;
 import hu.uni.eku.tzs.dao.entity.MovieEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

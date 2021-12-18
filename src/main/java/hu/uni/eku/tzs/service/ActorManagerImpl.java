@@ -14,38 +14,38 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ActorManagerImpl implements ActorManager{
+public class ActorManagerImpl implements ActorManager {
 
     private final ActorRepository actorRepository;
 
-    private static Actor convertActorEntityToModel(ActorEntity actorEntity){
+    private static Actor convertActorEntityToModel(ActorEntity actorEntity) {
         return new Actor(
-                actorEntity.getActorId(),
-                actorEntity.getActorGender(),
-                actorEntity.getActorQuality()
+            actorEntity.getActorId(),
+            actorEntity.getActorGender(),
+            actorEntity.getActorQuality()
         );
     }
 
-    private static ActorEntity convertActorModelToEntity(Actor actor){
+    private static ActorEntity convertActorModelToEntity(Actor actor) {
         return ActorEntity.builder()
-                .actorId(actor.getActorId())
-                .actorGender(actor.getActorGender())
-                .actorQuality(actor.getActorQuality())
-                .build();
+            .actorId(actor.getActorId())
+            .actorGender(actor.getActorGender())
+            .actorQuality(actor.getActorQuality())
+            .build();
     }
 
     @Override
     public Actor record(Actor actor) throws ActorAlreadyExitsException {
-        if(actorRepository.findById(actor.getActorId()).isPresent()){
+        if (actorRepository.findById(actor.getActorId()).isPresent()) {
             throw new ActorAlreadyExitsException();
         }
 
         ActorEntity actorEntity = actorRepository.save(
-                ActorEntity.builder()
-                        .actorId(actor.getActorId())
-                        .actorGender(actor.getActorGender())
-                        .actorQuality(actor.getActorQuality())
-                        .build()
+            ActorEntity.builder()
+                .actorId(actor.getActorId())
+                .actorGender(actor.getActorGender())
+                .actorQuality(actor.getActorQuality())
+                .build()
         );
         return convertActorEntityToModel(actorEntity);
     }
@@ -53,7 +53,7 @@ public class ActorManagerImpl implements ActorManager{
     @Override
     public Actor readById(int id) throws ActorNotFoundException {
         Optional<ActorEntity> entity = actorRepository.findById(id);
-        if(entity.isEmpty()){
+        if (entity.isEmpty()) {
             throw new ActorNotFoundException(String.format("Cannot find actor with this ID: %s", id));
         }
         return convertActorEntityToModel(entity.get());
@@ -62,17 +62,23 @@ public class ActorManagerImpl implements ActorManager{
     @Override
     public Collection<Actor> readAll() {
         return actorRepository.findAll().stream().map(ActorManagerImpl::convertActorEntityToModel)
-                .collect(Collectors.toList());
+            .collect(Collectors.toList());
     }
 
     @Override
     public Actor modify(Actor actor) throws ActorNotFoundException {
         ActorEntity entity = convertActorModelToEntity(actor);
+        if (actorRepository.findById(actor.getActorId()).isEmpty()) {
+            throw new ActorNotFoundException("Cannot modify an actor with this id");
+        }
         return convertActorEntityToModel(actorRepository.save(entity));
     }
 
     @Override
     public void delete(Actor actor) throws ActorNotFoundException {
+        if (actorRepository.findById(actor.getActorId()).isEmpty()) {
+            throw new ActorNotFoundException("Cannot delete an actor with this id");
+        }
         actorRepository.delete(convertActorModelToEntity(actor));
     }
 }

@@ -7,6 +7,7 @@ import hu.uni.eku.tzs.service.exceptions.MovieNotFoundException;
 import java.util.Collection;
 
 public interface MovieManager {
+
     Movie record(Movie movie) throws MovieAlreadyExistsException;
 
     Movie readById(int id) throws MovieNotFoundException;
@@ -14,6 +15,7 @@ public interface MovieManager {
     Collection<Movie> readAll();
 
     Movie modify(Movie movie) throws MovieNotFoundException;
+
     void delete(Movie movie) throws MovieNotFoundException;
 
 }

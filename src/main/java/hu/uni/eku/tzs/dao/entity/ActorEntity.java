@@ -6,24 +6,28 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="actors")
+@Entity(name = "actors")
 public class ActorEntity {
 
     @Id
-    @Column(name="actorId")
+    @Column(name = "actorId")
     private int actorId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="a_gender")
+    @Column(name = "a_gender")
     private Gender actorGender;
 
-    @Column(name="a_quality")
+    @Column(name = "a_quality")
     private int actorQuality;
 
 }
