@@ -20,7 +20,7 @@ import javax.persistence.EnumType;
 public class MovieEntity {
 
     @Id
-    @Column(name = "movieId")
+    @Column(name = "movieid")
     private int movieId;
 
     @Column(name = "year")

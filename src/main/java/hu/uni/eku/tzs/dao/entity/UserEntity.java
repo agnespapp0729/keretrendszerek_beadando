@@ -17,7 +17,7 @@ import javax.persistence.Id;
 public class UserEntity {
 
     @Id
-    @Column(name = "userId")
+    @Column(name = "userid")
     private int userId;
 
     @Column(name = "age")

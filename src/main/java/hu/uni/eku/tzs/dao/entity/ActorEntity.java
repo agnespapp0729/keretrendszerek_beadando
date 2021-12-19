@@ -20,7 +20,7 @@ import javax.persistence.EnumType;
 public class ActorEntity {
 
     @Id
-    @Column(name = "actorId")
+    @Column(name = "actorid")
     private int actorId;
 
     @Enumerated(EnumType.STRING)

@@ -16,7 +16,7 @@ import javax.persistence.Id;
 @Entity(name = "directors")
 public class DirectorEntity {
     @Id
-    @Column(name = "directorId")
+    @Column(name = "directorid")
     private int directorId;
 
     @Column(name = "d_quality")
