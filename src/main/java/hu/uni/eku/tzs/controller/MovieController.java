@@ -10,6 +10,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,7 +55,7 @@ public class MovieController {
     }
 
     @ApiOperation("Record")
-    @GetMapping(value = {""})
+    @PostMapping(value = {""})
     public MovieDto create(@Valid @RequestBody MovieDto recordRequestDto) throws MovieAlreadyExistsException {
         Movie movie = movieMapper.movieDtoTomovie(recordRequestDto);
         try {
@@ -64,7 +67,7 @@ public class MovieController {
     }
 
     @ApiOperation("Update")
-    @GetMapping(value = {""})
+    @PutMapping(value = {""})
     public MovieDto update(@Valid @RequestBody MovieDto updateRequestDto) {
         Movie movie = movieMapper.movieDtoTomovie(updateRequestDto);
         try {
@@ -76,7 +79,7 @@ public class MovieController {
     }
 
     @ApiOperation("Delete")
-    @GetMapping(value = {""})
+    @DeleteMapping(value = {""})
     public void delete(@RequestParam int id) {
         try {
             movieManager.delete(movieManager.readById(id));

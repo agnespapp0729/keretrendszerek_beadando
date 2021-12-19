@@ -10,6 +10,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,7 +55,7 @@ public class UserController {
     }
 
     @ApiOperation("Record")
-    @GetMapping(value = {""})
+    @PostMapping(value = {""})
     public UserDto create(@Valid @RequestBody UserDto recordRequestDto) throws UserAlreadyExistsException {
         User user = userMapper.userDtoTouser(recordRequestDto);
         try {
@@ -64,7 +67,7 @@ public class UserController {
     }
 
     @ApiOperation("Update")
-    @GetMapping(value = {""})
+    @PutMapping(value = {""})
     public UserDto update(@Valid @RequestBody UserDto updateRequestDto) {
         User user = userMapper.userDtoTouser(updateRequestDto);
         try {
@@ -76,7 +79,7 @@ public class UserController {
     }
 
     @ApiOperation("Delete")
-    @GetMapping(value = {""})
+    @DeleteMapping(value = {""})
     public void delete(@RequestParam int id) {
         try {
             userManager.delete(userManager.readById(id));
